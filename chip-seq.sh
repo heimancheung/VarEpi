@@ -1,11 +1,5 @@
 #!/bin/bash
 
-module load FastQC/0.11.5-Java-1.8.0_92
-module load Trimmomatic/0.32-Java-1.8.0_92
-module load BWA/0.7.17
-module load SAMtools/1.9
-module load picard/2.1.1-Java-1.8.0_92
-
 index=$1
 genome_length=$2
 control_bam=$3
@@ -57,14 +51,6 @@ mkdir -p ${date}_statDir
 
     samtools view -q 30 -h -b -S   ${sam_file} | samtools sort -T ${temp_file} -o ${sort_file} && java -jar ${EBROOTPICARD}/picard.jar  MarkDuplicates REMOVE_DUPLICATES=true  I=${sort_file} O=${unique_bam} M=${sample}.metrics > ./${date}_sam/${sample}_picard.log 2>&1
 
-
-module unload FastQC/0.11.5-Java-1.8.0_92
-module unload Trimmomatic/0.32-Java-1.8.0_92
-module unload BWA/0.7.17
-module load deepTools/2.5.3
-module load MACS2/2.1.1
-module load BEDTools/2.27
-module load R/3.5.2
 
 
 
