@@ -1,5 +1,6 @@
 library(dplyr)
 library(reshape2)
+library(qqman)
 
 args=commandArgs(T)
 
@@ -40,7 +41,9 @@ genotype$CORRELATION <- corelation
 genotype$P <- P
 genotype$BH <- p.adjust(genotype$P)
 
-
+pdf('qqplot.pdf')
+qq(genotype$P)
+dev.off()
 
 sig <- genotype[genotype$P< as.numeric(args[3]),]
 
