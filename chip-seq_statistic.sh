@@ -1,3 +1,6 @@
+#!/bin/bash
+
+
 #######6.statistics
 date=$1
 
